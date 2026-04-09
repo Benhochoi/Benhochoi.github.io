@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý đội bóng</title>
+</head>
+<body>
+
+<script>
+    const footballTeam = {
+        teamName: "Real Madrid",
+        coachName: "Carlo Ancelotti",
+        players: [],
+
+        addPlayer: function(name, age, position, isInjured) {
+            const player = {
+                name: name,
+                age: age,
+                position: position,
+                isInjured: isInjured
+            };
+            this.players.push(player);
+        },
+
+        listPlayers: function() {
+            console.log("=== DANH SÁCH CẦU THỦ REAL MADRID ===");
+
+            this.players.forEach((player, index) => {
+                console.log(
+                    (index + 1) + ". " +
+                    "Tên: " + player.name +
+                    " | Tuổi: " + player.age +
+                    " | Vị trí: " + player.position +
+                    " | Chấn thương: " + (player.isInjured ? "Có" : "Không")
+                );
+            });
+        },
+
+        injuredPlayers: function() {
+            let count = 0;
+
+            this.players.forEach(player => {
+                if (player.isInjured) {
+                    count++;
+                }
+            });
+
+            console.log("Số cầu thủ bị chấn thương: " + count);
+        },
+
+        teamInfo: function() {
+            console.log("=== THÔNG TIN ĐỘI REAL MADRID ===");
+            console.log("Tên đội: " + this.teamName);
+            console.log("Huấn luyện viên: " + this.coachName);
+            console.log("Số cầu thủ: " + this.players.length);
+        }
+    };
+
+    footballTeam.addPlayer("Jude Bellingham", 21, "Tiền vệ", false);
+    footballTeam.addPlayer("Vinícius Jr", 24, "Tiền đạo", false);
+    footballTeam.addPlayer("Rodrygo", 23, "Tiền đạo", false);
+    footballTeam.addPlayer("Luka Modrić", 38, "Tiền vệ", false);
+    footballTeam.addPlayer("Thibaut Courtois", 31, "Thủ môn", true);
+    footballTeam.addPlayer("Dani Carvajal", 32, "Hậu vệ", true);
+
+    footballTeam.teamInfo();
+    footballTeam.listPlayers();
+    footballTeam.injuredPlayers();
+
+</script>
+
+</body>
+</html>
