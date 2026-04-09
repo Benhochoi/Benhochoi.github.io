@@ -1,41 +1,72 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
-    <title>Bài tập buổi 9</title>
+    <title>Kiểm tra mật khẩu</title>
 </head>
-
 <body>
 
-    <h2>Kết quả</h2>
-    <p id="output"></p>
+<script>
+    // Hàm kiểm tra mật khẩu
+    function checkPassword(password) {
+        let errors = [];
 
-    <script>
-        
-        let fullName = "Dao Nguyen Chien"; // viết không dấu
-        let studentId = "27A4042916";
-        let nameParts = fullName.split(" ");
-        let firstName = nameParts[nameParts.length - 1];
-        let lastName = nameParts[0];
-        let middleName = nameParts.slice(1, -1).join("");
-        let email = firstName + lastName[0] + middleName[0] + "." + studentId.toLowerCase() + "@hvnh.edu.vn";
-        let coursePeriod = studentId.substring(0, 2);
-        let faculty = studentId.charAt(2);
-        let last4Digits = studentId.slice(-4);
-        let sum = 0;
-        for (let i = 0; i < last4Digits.length; i++) {
-            sum += parseInt(last4Digits[i]);
+        if (password.length < 8) {
+            errors.push("Phải có ít nhất 8 ký tự");
         }
-        document.getElementById("output").innerHTML =
-            "Email: " + email + "<br>" +
-            "Xin chào " + fullName +
-            ", bạn là sinh viên khóa " + coursePeriod +
-            ", khoa " + faculty +
-            ", tổng 4 số cuối trong mã sinh viên là " + sum;
 
-    </script>
+        if (!/[A-Z]/.test(password)) {
+            errors.push("Phải có ít nhất 1 chữ hoa (A-Z)");
+        }
+
+        if (!/[a-z]/.test(password)) {
+            errors.push("Phải có ít nhất 1 chữ thường (a-z)");
+        }
+
+        if (!/[0-9]/.test(password)) {
+            errors.push("Phải có ít nhất 1 chữ số (0-9)");
+        }
+
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            errors.push("Phải có ít nhất 1 ký tự đặc biệt");
+        }
+
+        return errors;
+    }
+
+    // Hàm đánh giá độ mạnh
+    function getStrength(password) {
+        if (password.length === 8) {
+            return "Yếu";
+        } else if (password.length < 12) {
+            return "Trung bình";
+        } else {
+            return "Mạnh";
+        }
+    }
+
+    // Main logic
+    let password;
+
+    while (true) {
+        password = prompt("Nhập mật khẩu:");
+
+        if (password === null) {
+            alert("Bạn đã hủy nhập!");
+            break;
+        }
+
+        let errors = checkPassword(password);
+
+        if (errors.length > 0) {
+            alert("Mật khẩu không hợp lệ:\n" + errors.join("\n"));
+        } else {
+            let strength = getStrength(password);
+            alert("Mật khẩu hợp lệ!\nĐộ mạnh: " + strength);
+            break;
+        }
+    }
+</script>
 
 </body>
-
 </html>
