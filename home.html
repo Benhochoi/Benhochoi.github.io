@@ -6,20 +6,9 @@
 <title>BookingHotel — Đặt Phòng Khách Sạn Việt Nam</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<style>
-/* Tab CSS */
-.tab-buttons { margin: 20px 0; }
-.tab-btn { padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; background: #f5f5f5; margin-right: 5px; }
-.tab-btn.active { background: #ffcc00; }
-.tab-content { display: none; padding: 10px; border: 1px solid #ccc; margin-top: 5px; }
-.tab-content.active { display: block; }
-/* Lazy load placeholder */
-.lazy { opacity: 0; transition: opacity 0.5s; }
-.lazy-loaded { opacity: 1; }
-</style>
 </head>
 <body>
+
 
 <header class="header">
   <div class="header-top">
@@ -27,96 +16,492 @@
       <img src="logo.png" style="width:50px; height:50px;" alt="logo">
       BookingHotel<span class="logo-dot">.COM</span>
     </a>
+
+    <nav class="header-nav">
+      <a class="h-nav-link active" href="home.html"><i class="fas fa-home"></i> Trang Chủ</a>
+      <a class="h-nav-link" href="double_room.html"><i class="fas fa-bed"></i> Phòng Đôi</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-bed"></i>Phòng Đơn</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-user-friends"></i>Phòng Gia Đình</a>
+      <a class="h-nav-link" href="#"><i class="fas fa-tag"></i> Ưu Đãi</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn-header btn-outline-w" href="#"><i class="fas fa-globe"></i> VN · ₫</a>
+      <a class="btn-header btn-outline-w" href="#">Đăng nhập</a>
+      <a class="btn-header btn-yellow" href="#">Đăng ký</a>
+    </div>
   </div>
+ 
 </header>
 
+<!-- ═══ HERO / SEARCH ════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
     <h1 class="hero-title">Tìm Chỗ Nghỉ Hoàn Hảo Của Bạn</h1>
+    <p class="hero-sub">Từ khách sạn 5 sao đến homestay ấm cúng — hơn 2.500 lựa chọn trên toàn Việt Nam</p>
 
     <div class="search-bar">
       <div class="s-field" style="flex:2">
         <i class="fas fa-map-marker-alt"></i>
-        <input type="text" placeholder="Hà Nội, Đà Nẵng, Phú Quốc...">
+        <div class="s-field-inner">
+          <span class="s-field-label">Điểm đến hoặc tên chỗ nghỉ</span>
+          <input type="text" placeholder="Hà Nội, Đà Nẵng, Phú Quốc...">
+        </div>
       </div>
       <div class="s-field">
         <i class="fas fa-calendar-alt"></i>
-        <input type="text" id="checkin" placeholder="Nhận phòng">
+        <div class="s-field-inner">
+          <span class="s-field-label">Nhận phòng</span>
+          <input type="date" id="checkin">
+        </div>
       </div>
       <div class="s-field">
         <i class="fas fa-calendar-check"></i>
-        <input type="text" id="checkout" placeholder="Trả phòng">
+        <div class="s-field-inner">
+          <span class="s-field-label">Trả phòng</span>
+          <input type="date" id="checkout">
+        </div>
       </div>
-      <button class="btn-search">Tìm kiếm</button>
+      <div class="s-field">
+        <i class="fas fa-user-friends"></i>
+        <div class="s-field-inner">
+          <span class="s-field-label">Khách &amp; Phòng</span>
+          <select>
+            <option>2 người lớn · 1 phòng</option>
+            <option>1 người lớn · 1 phòng</option>
+            <option>4 người lớn · 2 phòng</option>
+            <option>2 người lớn, 1 trẻ em · 1 phòng</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-search" onclick="window.location='double_room.html'">
+        <i class="fas fa-search"></i> Tìm kiếm
+      </button>
     </div>
+
+    
   </div>
 </div>
+<div class="hero-wave"></div>
+
 
 <div class="page-wrapper">
 
-  <!-- Room types -->
+ 
+  
+
+  
+  <div class="section-header">
+    <h2 class="section-title"><i class="fas fa-th-large"></i> Tìm theo loại chỗ nghỉ</h2>
+  </div>
   <div class="room-types-grid">
-    <div class="rt-card">
-      <img class="rt-img lazy" data-src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=400&q=80" alt="Phòng Đôi">
-      <div class="rt-name">Phòng Đôi</div>
-    </div>
-    <div class="rt-card">
-      <img class="rt-img lazy" data-src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" alt="Phòng Đơn">
-      <div class="rt-name">Phòng Đơn</div>
-    </div>
+    <a class="rt-card" href="double_room.html">
+      <div class="rt-img-wrap">
+        <img class="rt-img" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=400&q=80" alt="Phòng Đôi">
+        <span class="rt-pill yellow">PHỔ BIẾN</span>
+      </div>
+      <div class="rt-body">
+        <div class="rt-name">🛏️ Phòng Đôi</div>
+        <div class="rt-count">847 chỗ nghỉ</div>
+      </div>
+    </a>
+    <a class="rt-card" href="#">
+      <div class="rt-img-wrap">
+        <img class="rt-img" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" alt="Suite">
+        <span class="rt-pill">PHỔ BIẾN</span>
+      </div>
+      <div class="rt-body">
+        <div class="rt-name">👑 Phòng Đơn</div>
+        <div class="rt-count">312 chỗ nghỉ</div>
+      </div>
+    </a>
+    <a class="rt-card" href="#">
+      <div class="rt-img-wrap">
+        <img class="rt-img" src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?auto=format&fit=crop&w=400&q=80" alt="Gia Đình">
+      </div>
+      <div class="rt-body">
+        <div class="rt-name">👨‍👩‍👧 Phòng Gia Đình</div>
+        <div class="rt-count">523 chỗ nghỉ</div>
+      </div>
+    </a>
+    <a class="rt-card" href="#">
+      <div class="rt-img-wrap">
+        <img class="rt-img" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80" alt="Resort">
+        <span class="rt-pill yellow">MỚI</span>
+      </div>
+      <div class="rt-body">
+        <div class="rt-name">🏖️ Resort & Villa</div>
+        <div class="rt-count">198 chỗ nghỉ</div>
+      </div>
+    </a>
+    <a class="rt-card" href="#">
+      <div class="rt-img-wrap">
+        <img class="rt-img" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=400&q=80" alt="Deluxe">
+      </div>
+      <div class="rt-body">
+        <div class="rt-name">✨ Phòng Deluxe</div>
+        <div class="rt-count">691 chỗ nghỉ</div>
+      </div>
+    </a>
   </div>
 
-  <!-- Deals with tabs -->
-  <div class="tab-buttons">
-    <button class="tab-btn active" data-tab="flash">Flash Sale</button>
-    <button class="tab-btn" data-tab="combo">Combo</button>
-    <button class="tab-btn" data-tab="luxury">Hạng Sang</button>
+  <!-- ── HOT HOTELS ───────────────────────── -->
+  <div class="section-header">
+    <h2 class="section-title"><i class="fas fa-fire"></i> Khách sạn hot nhất Việt Nam</h2>
+    <a class="section-link" href="double_room.html">Xem tất cả <i class="fas fa-arrow-right"></i></a>
   </div>
-  <div id="flash" class="tab-content active">
-    <p>Deal Flash Sale: Giảm 35%, còn 2 ngày!</p>
+  <div class="hotels-grid">
+
+    <a class="hotel-card" href="detail.html">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=600&q=80" alt="Sofitel Metropole">
+        <span class="hc-badge genius">Genius</span>
+        <button class="hc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Sofitel Legend Metropole Hà Nội</div>
+          </div>
+          <div class="hc-score-box"><div class="hc-score-num">9.4</div><div class="hc-score-lbl">Xuất sắc</div></div>
+        </div>
+        <div class="hc-loc"><i class="fas fa-map-marker-alt"></i> Hoàn Kiếm, Hà Nội</div>
+        <div class="hc-tags">
+          <span class="hc-tag">Hủy miễn phí</span>
+          <span class="hc-tag green">Bao sáng</span>
+          <span class="hc-tag">Hồ bơi</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">5.500.000₫</div>
+            <div class="hc-price">3.850.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="#">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="InterContinental Da Nang">
+        <span class="hc-badge deal">-30%</span>
+        <button class="hc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">InterContinental Đà Nẵng Sun Peninsula</div>
+          </div>
+          <div class="hc-score-box"><div class="hc-score-num">9.2</div><div class="hc-score-lbl">Tuyệt vời</div></div>
+        </div>
+        <div class="hc-loc"><i class="fas fa-map-marker-alt"></i> Sơn Trà, Đà Nẵng</div>
+        <div class="hc-tags">
+          <span class="hc-tag">Bãi biển riêng</span>
+          <span class="hc-tag">Hồ bơi vô cực</span>
+          <span class="hc-tag green">Bao sáng</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">6.000.000₫</div>
+            <div class="hc-price">4.200.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="detail.html">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="JW Marriott Phu Quoc">
+        <button class="hc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">JW Marriott Phú Quốc Emerald Bay</div>
+          </div>
+          <div class="hc-score-box"><div class="hc-score-num">9.6</div><div class="hc-score-lbl">Hoàn hảo</div></div>
+        </div>
+        <div class="hc-loc"><i class="fas fa-map-marker-alt"></i> Bãi Khem, Phú Quốc</div>
+        <div class="hc-tags">
+          <span class="hc-tag">4 hồ bơi</span>
+          <span class="hc-tag green">Bao sáng</span>
+          <span class="hc-tag">Spa 5 sao</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price">5.100.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="#">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80" alt="Caravelle Saigon">
+        <span class="hc-badge genius">Genius</span>
+        <button class="hc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Park Hyatt Saigon Hotel</div>
+          </div>
+          <div class="hc-score-box"><div class="hc-score-num">9.1</div><div class="hc-score-lbl">Tuyệt vời</div></div>
+        </div>
+        <div class="hc-loc"><i class="fas fa-map-marker-alt"></i> Quận 1, TP. Hồ Chí Minh</div>
+        <div class="hc-tags">
+          <span class="hc-tag">Hủy miễn phí</span>
+          <span class="hc-tag">Bar rooftop</span>
+          <span class="hc-tag green">Bao sáng</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">3.500.000₫</div>
+            <div class="hc-price">2.750.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="#">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="Anantara Hoi An">
+        <span class="hc-badge new">Mới mở</span>
+        <button class="hc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Anantara Hội An Resort & Spa</div>
+          </div>
+          <div class="hc-score-box"><div class="hc-score-num">9.3</div><div class="hc-score-lbl">Xuất sắc</div></div>
+        </div>
+        <div class="hc-loc"><i class="fas fa-map-marker-alt"></i> Hội An, Quảng Nam</div>
+        <div class="hc-tags">
+          <span class="hc-tag">Xe đạp miễn phí</span>
+          <span class="hc-tag green">Bao sáng</span>
+          <span class="hc-tag">View sông</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price">3.200.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="hotel-card" href="#">
+      <div class="hc-img-wrap">
+        <img class="hc-img" src="https://statics.vinpearl.com/styles/354x195/public/2025_03/Nha%20Trang%20Bay_1741333348.jpg.webp?itok=jYa7eJTm" alt="Vinpearl">
+        <span class="hc-badge deal">-25%</span>
+        <button class="hc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-top">
+          <div>
+            <div class="hc-stars">★★★★★</div>
+            <div class="hc-name">Vinpearl Resort & Spa Nha Trang Bay</div>
+          </div>
+          <div class="hc-score-box"><div class="hc-score-num">8.8</div><div class="hc-score-lbl">Rất tốt</div></div>
+        </div>
+        <div class="hc-loc"><i class="fas fa-map-marker-alt"></i> Đảo Hòn Tre, Nha Trang</div>
+        <div class="hc-tags">
+          <span class="hc-tag">Water Park</span>
+          <span class="hc-tag">Cáp treo</span>
+          <span class="hc-tag green">Bao sáng</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price-block">
+            <div class="hc-price-label">Phòng đôi từ</div>
+            <div class="hc-price-old">2.500.000₫</div>
+            <div class="hc-price">1.850.000₫</div>
+            <div class="hc-price-per">/đêm, đã bao gồm thuế</div>
+          </div>
+          <span class="btn-see-rooms">Xem phòng</span>
+        </div>
+      </div>
+    </a>
+
   </div>
-  <div id="combo" class="tab-content">
-    <p>Deal Combo Phú Quốc 3N2Đ All-inclusive</p>
+
+ 
+  <div class="section-header">
+    <h2 class="section-title"><i class="fas fa-tags"></i> Gói ưu đãi đặc biệt</h2>
+    <a class="section-link" href="#">Xem tất cả <i class="fas fa-arrow-right"></i></a>
   </div>
-  <div id="luxury" class="tab-content">
-    <p>Deal Hạng Sang: Suite Đặc Biệt Hà Nội 1 Đêm</p>
+  <div class="deals-grid">
+
+    <div class="deal-card">
+      <div class="dc-img-wrap">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="Deal 1">
+        <div class="dc-discount">-35%</div>
+        <div class="dc-timer"><i class="fas fa-clock"></i> Còn 2 ngày</div>
+      </div>
+      <div class="dc-body">
+        <div class="dc-label">Flash Sale</div>
+        <div class="dc-name">Gói Nghỉ Dưỡng Cuối Tuần</div>
+        <div class="dc-perks">
+          <span class="dc-perk"><i class="fas fa-check"></i> Bao sáng</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Spa miễn phí</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Late check-out 14:00</span>
+        </div>
+        <div class="dc-desc">Nghỉ dưỡng 2 đêm tại khách sạn 4–5 sao, áp dụng Thứ 6 → Chủ Nhật. Bao gồm bữa sáng buffet và một buổi spa thư giãn.</div>
+        <div class="dc-footer">
+          <div>
+            <div class="dc-price-old">4.200.000₫</div>
+            <div class="dc-price">2.730.000₫</div>
+            <div class="dc-price-per">/đêm · 2 người</div>
+          </div>
+          <a class="btn-deal" href="#">Đặt ngay</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="dc-img-wrap">
+        <img class="dc-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="Deal 2">
+        <div class="dc-discount">-40%</div>
+        <div class="dc-timer"><i class="fas fa-fire"></i> Hot deal</div>
+      </div>
+      <div class="dc-body">
+        <div class="dc-label">✈️ Trọn Gói</div>
+        <div class="dc-name">Combo Phú Quốc 3N2Đ All-inclusive</div>
+        <div class="dc-perks">
+          <span class="dc-perk"><i class="fas fa-check"></i> Vé máy bay khứ hồi</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Đưa đón sân bay</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Tour 4 đảo</span>
+        </div>
+        <div class="dc-desc">Trọn gói nghỉ dưỡng 3 ngày 2 đêm tại resort 5 sao Phú Quốc. Vé bay HAN/SGN → PQC khứ hồi, đưa đón và tour đảo đã bao gồm.</div>
+        <div class="dc-footer">
+          <div>
+            <div class="dc-price-old">8.500.000₫</div>
+            <div class="dc-price">5.100.000₫</div>
+            <div class="dc-price-per">/người · tất cả bao gồm</div>
+          </div>
+          <a class="btn-deal" href="#">Đặt ngay</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="dc-img-wrap">
+        <img class="dc-img" src="data:image/jpeg;base64,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" alt="Deal 3">
+        <div class="dc-discount">-25%</div>
+        <div class="dc-timer"><i class="fas fa-star"></i> Mới nhất</div>
+      </div>
+      <div class="dc-body">
+        <div class="dc-label">Hạng Sang</div>
+        <div class="dc-name">Suite Đặc Biệt Hà Nội 1 Đêm</div>
+        <div class="dc-perks">
+          <span class="dc-perk"><i class="fas fa-check"></i> Phòng Suite 120m²</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Bữa tối rooftop</span>
+          <span class="dc-perk"><i class="fas fa-check"></i> Champagne chào đón</span>
+        </div>
+        <div class="dc-desc">Một đêm sang trọng trong căn suite rộng 120m² tại trung tâm Hà Nội. Bao gồm bữa tối lãng mạn tại nhà hàng rooftop và champagne chào đón.</div>
+        <div class="dc-footer">
+          <div>
+            <div class="dc-price-old">6.800.000₫</div>
+            <div class="dc-price">5.100.000₫</div>
+            <div class="dc-price-per">/đêm · 2 người</div>
+          </div>
+          <a class="btn-deal" href="#">Đặt ngay</a>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  
 
 </div>
 
+
 <footer>
-  <p>&copy; 2026 BookingHotel.com</p>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a class="f-logo" href="home.html">BookingHotel<span>.com</span></a>
+        <p class="f-desc">Nền tảng đặt phòng khách sạn uy tín hàng đầu Việt Nam. Giá tốt nhất được đảm bảo, hủy miễn phí linh hoạt.</p>
+        <div class="f-socials">
+          <a class="f-soc" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-tiktok"></i></a>
+          <a class="f-soc" href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h5>Hỗ Trợ</h5>
+        <ul>
+          <li><a href="#">Trung tâm trợ giúp</a></li>
+          <li><a href="#">Quản lý đặt phòng</a></li>
+          <li><a href="#">Chính sách hoàn tiền</a></li>
+          <li><a href="#">Liên hệ 24/7</a></li>
+          <li><a href="#">Báo sự cố</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h5>Khám Phá</h5>
+        <ul>
+          <li><a href="double_room.html">Phòng Đôi</a></li>
+          <li><a href="#">Khách sạn 5 sao</a></li>
+          <li><a href="#">Resort biển</a></li>
+          <li><a href="#">Hội An</a></li>
+          <li><a href="#">Phú Quốc</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h5>Về Chúng Tôi</h5>
+        <ul>
+          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="#">Điều khoản sử dụng</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="#">Hợp tác kinh doanh</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BookingHotel Vietnam. All rights reserved.</span>
+      
+    </div>
+  </div>
 </footer>
 
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script>
-$(function() {
-  // 1. Datepicker
-  $("#checkin, #checkout").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
-
-  // 2. Lazy Load
-  function lazyLoad() {
-    $('.lazy').each(function() {
-      if ($(this).offset().top < $(window).scrollTop() + $(window).height()) {
-        $(this).attr('src', $(this).data('src')).removeClass('lazy').addClass('lazy-loaded');
-      }
-    });
-  }
-  $(window).on('scroll resize', lazyLoad);
-  lazyLoad();
-
-  // 3. Tab switch
-  $('.tab-btn').click(function() {
-    var tab = $(this).data('tab');
-    $('.tab-content').removeClass('active');
-    $('#' + tab).addClass('active');
-    $('.tab-btn').removeClass('active');
-    $(this).addClass('active');
-  });
+function toggleFav(e, btn) {
+  e.preventDefault();
+  const i = btn.querySelector('i');
+  i.classList.toggle('far');
+  i.classList.toggle('fas');
+  btn.classList.toggle('saved');
+}
+document.querySelectorAll('.sf-chip').forEach(c => {
+  c.addEventListener('click', () => c.classList.toggle('active'));
 });
+const t = new Date(), d1 = new Date(t), d2 = new Date(t);
+d1.setDate(t.getDate()+1); d2.setDate(t.getDate()+3);
+const fmt = d => d.toISOString().split('T')[0];
+document.getElementById('checkin').value = fmt(d1);
+document.getElementById('checkout').value = fmt(d2);
 </script>
-
 </body>
 </html>
