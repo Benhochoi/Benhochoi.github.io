@@ -6,8 +6,28 @@
 <title>BookingHotel — Đặt Phòng Khách Sạn Việt Nam</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- jQuery UI DatePicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+<style>
+  /* DatePicker override */
+  .ui-datepicker { font-size: .85rem; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,.15); }
+  .ui-datepicker-header { background: #1a56db; color: #fff; border-radius: 8px 8px 0 0; }
+  .ui-datepicker-title { color: #fff; }
+  .ui-datepicker th { color: #1a56db; }
+  .ui-datepicker td a.ui-state-active,
+  .ui-datepicker td a.ui-state-highlight { background: #1a56db; color: #fff; border-radius: 6px; }
+  /* Lazy load placeholder */
+  img.lazy { opacity: 0; transition: opacity .5s ease; background: #e8edf5; }
+  img.lazy.loaded { opacity: 1; }
+  /* Fade-in on scroll for hotel cards */
+  .hlc { opacity: 0; transform: translateX(-20px); transition: opacity .45s ease, transform .45s ease; }
+  .hlc.visible { opacity: 1; transform: translateX(0); }
+  /* Top loading progress bar */
+  #page-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg,#1a56db,#60a5fa); z-index: 9999; transition: width .3s ease; }
+</style>
 </head>
 <body>
+<div id="page-progress"></div>
 
 
 <header class="header">
@@ -66,14 +86,14 @@
         <i class="fas fa-calendar-alt"></i>
         <div class="s-field-inner">
           <span class="s-field-label">Nhận phòng</span>
-          <input type="date" id="checkin">
+          <input type="text" id="checkin" class="date-pick" readonly placeholder="Chọn ngày..." autocomplete="off">
         </div>
       </div>
       <div class="s-field">
         <i class="fas fa-calendar-check"></i>
         <div class="s-field-inner">
           <span class="s-field-label">Trả phòng</span>
-          <input type="date" id="checkout">
+          <input type="text" id="checkout" class="date-pick" readonly placeholder="Chọn ngày..." autocomplete="off">
         </div>
       </div>
       <div class="s-field">
@@ -115,7 +135,7 @@
     <!-- Card 1 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=400&q=80" alt="Sofitel">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=400&q=80" alt="Sofitel">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -153,7 +173,7 @@
     <!-- Card 2 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80" alt="InterContinental">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80" alt="InterContinental">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -191,7 +211,7 @@
     <!-- Card 3 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="JW Marriott">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="JW Marriott">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -226,7 +246,7 @@
     <!-- Card 4 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=400&q=80" alt="Park Hyatt">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=400&q=80" alt="Park Hyatt">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -264,7 +284,7 @@
     <!-- Card 5 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" alt="Anantara">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" alt="Anantara">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -302,7 +322,7 @@
     <!-- Card 6 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1573548842355-73bb50e50af3?auto=format&fit=crop&w=400&q=80" alt="Vinpearl">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1573548842355-73bb50e50af3?auto=format&fit=crop&w=400&q=80" alt="Vinpearl">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -340,7 +360,7 @@
     <!-- Card 7 -->
     <div class="hlc">
       <div class="hlc-img-wrap">
-        <img class="hlc-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80" alt="Melia">
+        <img class="hlc-img lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80" alt="Melia">
         <button class="hlc-fav" onclick="toggleFav(event,this)"><i class="far fa-heart"></i></button>
       </div>
       <div class="hlc-info">
@@ -438,28 +458,85 @@
     </div>
   </div>
 </footer>
+<!-- jQuery + jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script>
-function toggleChip(el) {
-  el.classList.toggle('active');
-}
-function toggleFav(e, btn) {
-  e.preventDefault();
-  const i = btn.querySelector('i');
-  i.classList.toggle('far');
-  i.classList.toggle('fas');
-}
-function resetFilters() {
-  document.querySelectorAll('.filter-option input').forEach(i => i.checked = false);
-}
-function updatePrice(el) {
-  const v = parseInt(el.value);
-  document.getElementById('priceVal').textContent = v.toLocaleString('vi-VN') + '₫';
-}
-const t = new Date(), d1 = new Date(t), d2 = new Date(t);
-d1.setDate(t.getDate()+1); d2.setDate(t.getDate()+3);
-const fmt = d => d.toISOString().split('T')[0];
-document.getElementById('checkin').value = fmt(d1);
-document.getElementById('checkout').value = fmt(d2);
+$(function() {
+/* ── Hiệu ứng 1 (chung): jQuery UI DatePicker ───────────────────────────── */
+  var today = new Date();
+  var d1 = new Date(today); d1.setDate(today.getDate() + 1);
+  var d2 = new Date(today); d2.setDate(today.getDate() + 3);
+
+  $.datepicker.setDefaults({
+    dateFormat: 'dd/mm/yy',
+    minDate: 0,
+    changeMonth: true,
+    showAnim: 'slideDown',
+    dayNamesMin: ['CN','T2','T3','T4','T5','T6','T7'],
+    monthNames: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
+    firstDay: 1
+  });
+  $('#checkin').datepicker({
+    onSelect: function() {
+      var sel = $(this).datepicker('getDate');
+      var min = new Date(sel); min.setDate(min.getDate()+1);
+      $('#checkout').datepicker('option','minDate', min);
+      if ($('#checkout').datepicker('getDate') <= sel) $('#checkout').datepicker('setDate', min);
+    }
+  }).datepicker('setDate', d1);
+  $('#checkout').datepicker().datepicker('setDate', d2);
+
+/* ── Hiệu ứng 2: Progress Bar (thanh tiến trình khi cuộn trang) ─────────── */
+  $(window).on('scroll', function() {
+    var scrollTop  = $(window).scrollTop();
+    var docHeight  = $(document).height() - $(window).height();
+    var progress   = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    $('#page-progress').css('width', progress + '%');
+  });
+
+/* ── Hiệu ứng 3: Lazy Load (ảnh tải khi cuộn đến) ──────────────────────── */
+  function lazyLoadImages() {
+    $('img.lazy:not(.loaded)').each(function() {
+      var imgTop = $(this).offset().top;
+      var viewBottom = $(window).scrollTop() + $(window).height();
+      if (imgTop < viewBottom + 200) {
+        var $img = $(this);
+        var src  = $img.attr('data-src');
+        if (src) {
+          $('<img>').on('load', function() {
+            $img.attr('src', src).addClass('loaded');
+          }).attr('src', src);
+        }
+      }
+    });
+  }
+  $(window).on('scroll', lazyLoadImages);
+  lazyLoadImages(); // run on page load for above-fold images
+
+/* ── Hiệu ứng 4: Fade-in khi cuộn (Hotel cards) ───────────────────────── */
+  function revealCards() {
+    var winBottom = $(window).scrollTop() + $(window).height();
+    $('.hlc').each(function(i) {
+      if ($(this).offset().top < winBottom - 40) {
+        var $el = $(this);
+        setTimeout(function() { $el.addClass('visible'); }, i * 100);
+      }
+    });
+  }
+  $(window).on('scroll', revealCards);
+  revealCards();
+
+/* ── Sẵn có ──────────────────────────────────────────────────────────────── */
+  window.toggleChip = function(el) { $(el).toggleClass('active'); };
+  window.toggleFav  = function(e, btn) {
+    e.preventDefault();
+    $(btn).find('i').toggleClass('far fas');
+  };
+  function resetFilters() {
+    $('.filter-option input').prop('checked', false);
+  }
+});
 </script>
 </body>
 </html>

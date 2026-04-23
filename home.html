@@ -6,6 +6,33 @@
 <title>BookingHotel — Đặt Phòng Khách Sạn Việt Nam</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- jQuery UI DatePicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+<!-- Slick Carousel CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<style>
+  /* DatePicker override */
+  .ui-datepicker { font-size: .85rem; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,.15); }
+  .ui-datepicker-header { background: #1a56db; color: #fff; border-radius: 8px 8px 0 0; }
+  .ui-datepicker-title { color: #fff; }
+  .ui-datepicker th { color: #1a56db; }
+  .ui-datepicker td a.ui-state-active,
+  .ui-datepicker td a.ui-state-highlight { background: #1a56db; color: #fff; border-radius: 6px; }
+  /* Slick slider */
+  .room-slider-wrap { position: relative; overflow: hidden; margin-bottom: 20px; }
+  .room-slider .rt-card { margin: 0 8px; display: block !important; }
+  .room-slider .slick-prev, .room-slider .slick-next { z-index: 10; }
+  .room-slider .slick-prev { left: -8px; }
+  .room-slider .slick-next { right: -8px; }
+  .room-slider .slick-dots li button:before { color: #1a56db; }
+  /* Fade-in on scroll for deal cards */
+  .deal-card { opacity: 0; transform: translateY(30px); transition: opacity .5s ease, transform .5s ease; }
+  .deal-card.visible { opacity: 1; transform: translateY(0); }
+  /* Hotel cards fade-in */
+  .hotel-card { opacity: 0; transform: translateY(20px); transition: opacity .4s ease, transform .4s ease; }
+  .hotel-card.visible { opacity: 1; transform: translateY(0); }
+</style>
 </head>
 <body>
 
@@ -52,14 +79,14 @@
         <i class="fas fa-calendar-alt"></i>
         <div class="s-field-inner">
           <span class="s-field-label">Nhận phòng</span>
-          <input type="date" id="checkin">
+          <input type="text" id="checkin" class="date-pick" readonly placeholder="Chọn ngày..." autocomplete="off">
         </div>
       </div>
       <div class="s-field">
         <i class="fas fa-calendar-check"></i>
         <div class="s-field-inner">
           <span class="s-field-label">Trả phòng</span>
-          <input type="date" id="checkout">
+          <input type="text" id="checkout" class="date-pick" readonly placeholder="Chọn ngày..." autocomplete="off">
         </div>
       </div>
       <div class="s-field">
@@ -94,7 +121,8 @@
   <div class="section-header">
     <h2 class="section-title"><i class="fas fa-th-large"></i> Tìm theo loại chỗ nghỉ</h2>
   </div>
-  <div class="room-types-grid">
+  <div class="room-slider-wrap">
+  <div class="room-slider">
     <a class="rt-card" href="double_room.html">
       <div class="rt-img-wrap">
         <img class="rt-img" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=400&q=80" alt="Phòng Đôi">
@@ -143,9 +171,8 @@
         <div class="rt-count">691 chỗ nghỉ</div>
       </div>
     </a>
-  </div>
-
-  <!-- ── HOT HOTELS ───────────────────────── -->
+  </div><!-- end room-slider -->
+  </div><!-- end room-slider-wrap --> ───────────────────────── -->
   <div class="section-header">
     <h2 class="section-title"><i class="fas fa-fire"></i> Khách sạn hot nhất Việt Nam</h2>
     <a class="section-link" href="double_room.html">Xem tất cả <i class="fas fa-arrow-right"></i></a>
@@ -486,22 +513,84 @@
   </div>
 </footer>
 
+<!-- jQuery + jQuery UI + Slick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script>
-function toggleFav(e, btn) {
-  e.preventDefault();
-  const i = btn.querySelector('i');
-  i.classList.toggle('far');
-  i.classList.toggle('fas');
-  btn.classList.toggle('saved');
-}
-document.querySelectorAll('.sf-chip').forEach(c => {
-  c.addEventListener('click', () => c.classList.toggle('active'));
+/* ── Hiệu ứng 1: jQuery UI DatePicker (Lịch chọn ngày) ─────────────────── */
+$(function() {
+  var today = new Date();
+  var d1 = new Date(today); d1.setDate(today.getDate() + 1);
+  var d2 = new Date(today); d2.setDate(today.getDate() + 3);
+
+  $.datepicker.setDefaults({
+    dateFormat: 'dd/mm/yy',
+    minDate: 0,
+    changeMonth: true,
+    changeYear: false,
+    showAnim: 'slideDown',
+    dayNamesMin: ['CN','T2','T3','T4','T5','T6','T7'],
+    monthNames: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
+    firstDay: 1
+  });
+
+  $('#checkin').datepicker({
+    onSelect: function(date, inst) {
+      // Checkout phải sau checkin ít nhất 1 ngày
+      var selected = $(this).datepicker('getDate');
+      var minCheckout = new Date(selected);
+      minCheckout.setDate(minCheckout.getDate() + 1);
+      $('#checkout').datepicker('option', 'minDate', minCheckout);
+      if ($('#checkout').datepicker('getDate') <= selected) {
+        $('#checkout').datepicker('setDate', minCheckout);
+      }
+    }
+  }).datepicker('setDate', d1);
+
+  $('#checkout').datepicker().datepicker('setDate', d2);
+
+/* ── Hiệu ứng 2: Slick Carousel (Trượt ảnh loại phòng) ─────────────────── */
+  $('.room-slider').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2800,
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    cssEase: 'ease-in-out',
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768,  settings: { slidesToShow: 2 } },
+      { breakpoint: 480,  settings: { slidesToShow: 1 } }
+    ]
+  });
+
+/* ── Hiệu ứng 3: Fade-in khi cuộn (Deal cards & Hotel cards) ────────────── */
+  function revealOnScroll() {
+    var windowBottom = $(window).scrollTop() + $(window).height();
+    $('.deal-card, .hotel-card').each(function(i) {
+      var elemTop = $(this).offset().top;
+      if (elemTop < windowBottom - 60) {
+        var $el = $(this);
+        setTimeout(function() { $el.addClass('visible'); }, i * 80);
+      }
+    });
+  }
+  $(window).on('scroll', revealOnScroll);
+  revealOnScroll(); // trigger immediately for visible items
+
+/* ── Sẵn có: toggleFav ─────────────────────────────────────────────────── */
+  $(document).on('click', '.hc-fav, .hlc-fav', function(e) {
+    e.preventDefault();
+    $(this).find('i').toggleClass('far fas');
+    $(this).toggleClass('saved');
+  });
+
+  $('.sf-chip').on('click', function() { $(this).toggleClass('active'); });
 });
-const t = new Date(), d1 = new Date(t), d2 = new Date(t);
-d1.setDate(t.getDate()+1); d2.setDate(t.getDate()+3);
-const fmt = d => d.toISOString().split('T')[0];
-document.getElementById('checkin').value = fmt(d1);
-document.getElementById('checkout').value = fmt(d2);
 </script>
 </body>
 </html>
