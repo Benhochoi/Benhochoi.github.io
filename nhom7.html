@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kỳ Nghỉ Giỗ Tổ & 30/4–1/5 · Hành Trình Của Tôi</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ─── */
+    :root {
+      --crimson:     #8B1A1A;
+      --crimson-mid: #C0392B;
+      --crimson-lt:  #F5CACA;
+      --gold:        #C9952A;
+      --gold-lt:     #FFF3CD;
+      --ivory:       #FAF6EF;
+      --ink:         #1C1208;
+      --ink-muted:   #5A4A3A;
+      --paper:       #FFF9F2;
+      --accent-teal: #1B6B5E;
+    }
+
+    /* ─── Base ─── */
+    body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--ink);
+    }
+    .lead-serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--ink-muted);
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar-custom {
+      background: var(--crimson);
+      padding: 1rem 0;
+    }
+    .navbar-custom .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold-lt) !important;
+      letter-spacing: 0.03em;
+    }
+    .navbar-custom .nav-link {
+      color: rgba(255,255,255,0.82) !important;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .navbar-custom .nav-link:hover { color: var(--gold-lt) !important; }
+    .navbar-custom .navbar-toggler { border-color: rgba(255,255,255,0.4); }
+    .navbar-custom .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.7%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ─── HERO ─── */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--crimson);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1600&q=80') center/cover no-repeat;
+      filter: brightness(0.35) saturate(0.8);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(139,26,26,0.75) 0%, rgba(28,18,8,0.55) 60%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-date-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.08;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.78);
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+    .btn-hero {
+      background: var(--gold);
+      color: var(--ink);
+      border: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.4rem;
+      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      transition: all 0.25s;
+    }
+    .btn-hero:hover { background: #fff; color: var(--crimson); }
+    .btn-hero-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.5);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.4rem;
+      font-weight: 400;
+      font-family: 'Nunito', sans-serif;
+      transition: all 0.25s;
+    }
+    .btn-hero-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── SECTION TITLES ─── */
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+    .section-divider {
+      width: 56px; height: 2px;
+      background: var(--gold);
+      margin: 0 auto 2rem;
+    }
+    .section-divider.left { margin-left: 0; }
+
+    /* ─── INTRO STRIP ─── */
+    .intro-strip {
+      background: var(--crimson);
+      padding: 4rem 0;
+    }
+    .holiday-pill {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50px;
+      color: #fff;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+    .holiday-pill i { color: var(--gold); font-size: 1rem; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* ─── PLACES VISITED ─── */
+    .place-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+      height: 380px;
+    }
+    .place-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .place-card:hover img { transform: scale(1.06); }
+    .place-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,18,8,0.88) 0%, rgba(28,18,8,0.2) 55%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.8rem;
+      transition: background 0.4s;
+    }
+    .place-card:hover .place-card-overlay {
+      background: linear-gradient(to top, rgba(139,26,26,0.85) 0%, rgba(28,18,8,0.3) 70%, transparent 100%);
+    }
+    .place-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 0.7rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+    }
+    .place-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+    .place-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    .place-card:hover .place-desc { max-height: 80px; }
+
+    /* ─── MEMORIES TIMELINE ─── */
+    .timeline {
+      position: relative;
+      padding: 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: var(--crimson-lt);
+      top: 0; bottom: 0;
+    }
+    @media (max-width: 767px) {
+      .timeline::before { left: 32px; }
+    }
+    .timeline-item {
+      display: flex;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+    .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--crimson);
+      border: 3px solid var(--ivory);
+      box-shadow: 0 0 0 2px var(--crimson-lt);
+      top: 1.2rem;
+      z-index: 1;
+    }
+    @media (max-width: 767px) {
+      .timeline-item, .timeline-item:nth-child(odd) { flex-direction: row; }
+      .timeline-dot { left: 32px; }
+    }
+    .timeline-content {
+      width: 44%;
+      background: var(--paper);
+      border: 1px solid rgba(139,26,26,0.12);
+      border-left: 3px solid var(--crimson);
+      padding: 1.5rem 1.8rem;
+    }
+    .timeline-item:nth-child(even) .timeline-content { margin-left: 6%; }
+    .timeline-item:nth-child(odd) .timeline-content { margin-right: 6%; }
+    @media (max-width: 767px) {
+      .timeline-content { width: calc(100% - 70px); margin-left: 70px !important; margin-right: 0 !important; }
+    }
+    .timeline-year {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .timeline-text {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--ink-muted);
+    }
+    .timeline-emoji {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    /* ─── WISHLIST ─── */
+    .wishlist-card {
+      background: var(--paper);
+      border: 1px solid rgba(139,26,26,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .wishlist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(139,26,26,0.12);
+    }
+    .wishlist-card-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .wishlist-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .wishlist-card:hover .wishlist-card-img img { transform: scale(1.06); }
+    .wishlist-card-img .rank-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wishlist-card-body { padding: 1.4rem 1.6rem; }
+    .wishlist-location {
+      font-size: 0.73rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .wishlist-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .wishlist-reason {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+    .wishlist-meta {
+      display: flex; gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+    .wishlist-meta i { color: var(--crimson); margin-right: 4px; }
+
+    /* ─── GALLERY ─── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 6px;
+    }
+    @media (max-width: 767px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    }
+    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery-hover {
+      position: absolute; inset: 0;
+      background: rgba(139,26,26,0.0);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .gallery-hover i { color: #fff; font-size: 1.5rem; opacity: 0; transition: opacity 0.3s; }
+    .gallery-item:hover .gallery-hover { background: rgba(139,26,26,0.35); }
+    .gallery-item:hover .gallery-hover i { opacity: 1; }
+
+    /* ─── QUOTE BLOCK ─── */
+    .quote-section {
+      background: var(--crimson);
+      padding: 5rem 0;
+    }
+    .blockquote-hero {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.55;
+      border: none;
+      margin: 0;
+    }
+    .blockquote-footer-custom {
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 1.2rem;
+    }
+    .quote-icon {
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.4;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      display: block;
+      margin-bottom: -1rem;
+    }
+
+    /* ─── TIPS SECTION ─── */
+    .tip-card {
+      background: var(--paper);
+      border-top: 3px solid var(--crimson);
+      padding: 1.8rem 1.6rem;
+      height: 100%;
+    }
+    .tip-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--crimson-lt);
+      color: var(--crimson);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .tip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+    .tip-text {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+    }
+
+    /* ─── FOOTER ─── */
+    .site-footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.55);
+      padding: 3.5rem 0 2rem;
+      font-size: 0.85rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .footer-social a {
+      color: rgba(255,255,255,0.45);
+      font-size: 1.1rem;
+      margin-right: 0.9rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { color: var(--gold); }
+    .footer-divider {
+      border-color: rgba(255,255,255,0.1);
+      margin: 2rem 0 1.5rem;
+    }
+    .flag-icon {
+      width: 18px; height: 14px;
+      background: var(--crimson);
+      border-radius: 2px;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .flag-icon::after {
+      content: '★';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold);
+      font-size: 9px;
+      line-height: 1;
+    }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── MISC ─── */
+    .bg-ivory { background: var(--ivory); }
+    .bg-paper { background: var(--paper); }
+    .text-gold { color: var(--gold); }
+    .text-crimson { color: var(--crimson); }
+    .text-muted-ink { color: var(--ink-muted); }
+    section { scroll-margin-top: 70px; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <span class="flag-icon me-2"></span> Hành Trình Nghỉ Lễ
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="#da-di">Nơi Đã Đến</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ky-niem">Kỷ Niệm</a></li>
+        <li class="nav-item"><a class="nav-link" href="#muon-di">Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Ảnh</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tips">Gợi Ý</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="row justify-content-start">
+      <div class="col-lg-8">
+        <div class="hero-date-badge">10 tháng 3 âm lịch · 30/4 · 1/5 · 2025</div>
+        <h1 class="hero-title">
+          Kỳ Nghỉ Vàng<br/>
+          <em>Của Người Việt</em>
+        </h1>
+        <p class="hero-subtitle">
+          Từ Đền Hùng thiêng liêng đến những bãi biển xanh mướt —
+          hành trình của tôi qua những ngày lễ đáng nhớ nhất năm.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#da-di" class="btn btn-hero">Khám Phá Hành Trình</a>
+          <a href="#ky-niem" class="btn btn-hero-outline">Xem Kỷ Niệm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Kéo xuống</span>
+    <i class="bi bi-chevron-down" style="font-size:1rem;"></i>
+  </div>
+</section>
+
+<!-- ══ INTRO STRIP ══ -->
+<section class="intro-strip" id="gioi-thieu">
+  <div class="container">
+    <div class="row gy-4 align-items-center">
+      <div class="col-lg-6">
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <span class="holiday-pill"><i class="bi bi-flag-fill"></i> Giỗ Tổ Hùng Vương</span>
+          <span class="holiday-pill"><i class="bi bi-star-fill"></i> Ngày Giải Phóng 30/4</span>
+          <span class="holiday-pill"><i class="bi bi-people-fill"></i> Quốc Tế Lao Động 1/5</span>
+        </div>
+        <h2 class="section-title" style="color:#fff;">Ba Ngày Lễ,<br/>Một Kỳ Nghỉ Hoàn Hảo</h2>
+        <p class="lead-serif" style="color:rgba(255,255,255,0.7); font-size:1.1rem;">
+          Mỗi năm, người Việt Nam có một khoảng lặng đặc biệt để hướng về cội nguồn,
+          để nhớ ơn tiên tổ, và để chạm vào vẻ đẹp của đất nước mình.
+          Đây là câu chuyện về những chuyến đi của tôi trong dịp này.
+        </p>
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <div class="row text-center gy-4">
+          <div class="col-4">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Chuyến đi</div>
+          </div>
+          <div class="col-4">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Tỉnh thành</div>
+          </div>
+          <div class="col-4">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Kỷ niệm</div>
+          </div>
+        </div>
+        <hr style="border-color:rgba(255,255,255,0.15); margin: 2rem 0;" />
+        <p style="color:rgba(255,255,255,0.55); font-size:0.85rem; line-height:1.8; text-align:center;">
+          <i class="bi bi-quote" style="color:var(--gold);"></i>
+          "Dù ai đi ngược về xuôi — Nhớ ngày Giỗ Tổ mùng mười tháng ba"
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NƠI ĐÃ ĐI ══ -->
+<section class="py-6 bg-ivory" id="da-di" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-eyebrow">Nhật ký du lịch</p>
+      <h2 class="section-title">Những Nơi Đã Đến</h2>
+      <div class="section-divider mx-auto"></div>
+      <p class="lead-serif mx-auto" style="max-width:560px;">
+        Mỗi địa danh đều để lại trong tôi một dấu ấn riêng — một màu trời, một mùi hương, một khoảnh khắc khó quên.
+      </p>
+    </div>
+
+    <!-- Row 1: 2 large cards -->
+    <div class="row g-3 mb-3">
+      <div class="col-lg-7 fade-up">
+        <div class="place-card">
+          <img src="https://images.vietnamtourism.gov.vn/vn/images/2020/Thang_10/DenHung.jpg" alt="Đền Hùng, Phú Thọ" />
+          <div class="place-card-overlay">
+            <span class="place-tag">Phú Thọ</span>
+            <div class="place-name">Đền Hùng, Phú Thọ</div>
+            <p class="place-desc">Khu di tích lịch sử quốc gia đặc biệt, nơi thờ phụng các vua Hùng — tổ tiên của dân tộc Việt Nam. Đặt chân lên những bậc đá cổ kính, tôi cảm nhận trọn vẹn sự thiêng liêng của cội nguồn.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 fade-up fade-up-delay-1">
+        <div class="place-card">
+          <img src="https://motogo.vn/wp-content/uploads/2023/10/hoang-thanh-thang-long-13.jpg" alt="Hoàng Thành Thăng Long" />
+          <div class="place-card-overlay">
+            <span class="place-tag">Hà Nội</span>
+            <div class="place-name">Hoàng Thành Thăng Long</div>
+            <p class="place-desc">Chiêm ngưỡng kiến trúc cổ và tìm hiểu lịch sử triều đại Việt Nam.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: 3 cards -->
+    <div class="row g-3">
+      <div class="col-lg-4 fade-up">
+        <div class="place-card" style="height:300px;">
+          <img src="https://static.vinwonders.com/production/van-mieu-quoc-tu-giam-1.jpg" alt="Văn miếu Quốc Tử Giám" />
+          <div class="place-card-overlay">
+            <span class="place-tag">Hà Nội</span>
+            <div class="place-name">Văn miếu Quốc Tử Giám</div>
+            <p class="place-desc">Thăm đền thờ Khổng Tử và không gian giáo dục cổ truyền Việt Nam.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 fade-up fade-up-delay-1">
+        <div class="place-card" style="height:300px;">
+          <img src="https://file3.qdnd.vn/data/images/0/2025/03/11/upload_2049/hoa-lo1.jpg?dpi=150&quality=100&w=870" alt="Nhà tù Hỏa Lò" />
+          <div class="place-card-overlay">
+            <span class="place-tag">Hà Nội</span>
+            <div class="place-name">Nhà tù Hỏa Lò</div>
+            <p class="place-desc">Tham quan di tích lịch sử nổi tiếng, tìm hiểu câu chuyện đấu tranh kiên cường của các chiến sĩ trong thời kỳ kháng chiến.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 fade-up fade-up-delay-2">
+        <div class="place-card" style="height:300px;">
+          <img src="https://media-cdn-v2.laodong.vn/storage/newsportal/2025/4/27/1497895/Bao-Tang-Lich-Su-Qua.jpg" alt="Bảo tàng quân sự" />
+          <div class="place-card-overlay">
+            <span class="place-tag">Hà Nội</span>
+            <div class="place-name">Bảo tàng quân sự</div>
+            <p class="place-desc">Lòng hang tối, ánh đèn lung linh trên những nhũ đá triệu năm tuổi — một kỳ quan dưới lòng đất.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUOTE ══ -->
+<section class="quote-section">
+  <div class="container text-center">
+    <span class="quote-icon">"""</span>
+    <blockquote class="blockquote-hero mx-auto" style="max-width:700px;">
+      Đi để trở về — mỗi chuyến đi không chỉ là khám phá vùng đất mới,
+      mà còn là cách tôi hiểu thêm về chính mình và về quê hương mình yêu dấu.
+    </blockquote>
+    <p class="blockquote-footer-custom">— Nhật ký hành trình · 30/4/2024</p>
+  </div>
+</section>
+<!-- ══ NƠI MUỐN ĐI ══ -->
+<section class="py-6 bg-paper" id="muon-di" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="mb-5 fade-up">
+      <p class="section-eyebrow">Danh sách ước mơ</p>
+      <h2 class="section-title">Wishlist · Nơi Muốn Ghé</h2>
+      <div class="section-divider left"></div>
+      <p class="lead-serif" style="max-width:520px;">
+        Còn bao nhiêu nơi chưa đặt chân đến — đây là danh sách tôi đang ấp ủ cho kỳ nghỉ tới.
+      </p>
+    </div>
+ 
+    <div class="row g-4">
+      <!-- Côn Đảo -->
+      <div class="col-lg-4 col-md-6 fade-up">
+        <div class="wishlist-card">
+          <div class="wishlist-card-img">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Côn Đảo" />
+            <div class="rank-badge">01</div>
+          </div>
+          <div class="wishlist-card-body">
+            <div class="wishlist-location"><i class="bi bi-geo-alt-fill"></i> Bà Rịa – Vũng Tàu</div>
+            <h4 class="wishlist-name">Côn Đảo</h4>
+            <p class="wishlist-reason">Hòn đảo với lịch sử bi tráng và vẻ đẹp hoang sơ bậc nhất Việt Nam. Tôi muốn đến để thắp nhang tưởng nhớ và tắm biển xanh trong vắt.</p>
+            <div class="wishlist-meta">
+              <span><i class="bi bi-airplane"></i> Bay từ Hà Nội</span>
+              <span><i class="bi bi-clock"></i> 5–7 ngày lý tưởng</span>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Sa Pa -->
+      <div class="col-lg-4 col-md-6 fade-up fade-up-delay-1">
+        <div class="wishlist-card">
+          <div class="wishlist-card-img">
+            <img src="https://images.unsplash.com/photo-1509233725247-49e657c54213?w=600&q=80" alt="Sa Pa" />
+            <div class="rank-badge">02</div>
+          </div>
+          <div class="wishlist-card-body">
+            <div class="wishlist-location"><i class="bi bi-geo-alt-fill"></i> Lào Cai</div>
+            <h4 class="wishlist-name">Sa Pa mùa lúa chín</h4>
+            <p class="wishlist-reason">Những thửa ruộng bậc thang vàng óng lúc tháng 9, nhưng dịp 30/4 cũng rất đẹp với trời mát, sương mờ và hoa đào muộn rải rác.</p>
+            <div class="wishlist-meta">
+              <span><i class="bi bi-train-front"></i> Tàu đêm từ Hà Nội</span>
+              <span><i class="bi bi-clock"></i> 3–4 ngày</span>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Mũi Né -->
+      <div class="col-lg-4 col-md-6 fade-up fade-up-delay-2">
+        <div class="wishlist-card">
+          <div class="wishlist-card-img">
+            <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=600&q=80" alt="Mũi Né" />
+            <div class="rank-badge">03</div>
+          </div>
+          <div class="wishlist-card-body">
+            <div class="wishlist-location"><i class="bi bi-geo-alt-fill"></i> Bình Thuận</div>
+            <h4 class="wishlist-name">Đồi cát Mũi Né</h4>
+            <p class="wishlist-reason">Đứng trên đỉnh đồi cát đỏ lúc bình minh, nhìn bóng mình dài trên cát — đó là trải nghiệm tôi đã hẹn với mình nhiều lần nhưng chưa thực hiện được.</p>
+            <div class="wishlist-meta">
+              <span><i class="bi bi-car-front"></i> Xe khách từ Sài Gòn</span>
+              <span><i class="bi bi-clock"></i> 2–3 ngày</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- ══ TIPS ══ -->
+<section class="py-6 bg-paper" id="tips" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-eyebrow">Kinh nghiệm rút ra</p>
+      <h2 class="section-title">Gợi Ý Cho Kỳ Nghỉ Lễ</h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 fade-up">
+        <div class="tip-card">
+          <div class="tip-icon"><i class="bi bi-calendar-check"></i></div>
+          <h5 class="tip-title">Đặt sớm 1–2 tháng</h5>
+          <p class="tip-text">Dịp nghỉ lễ dài, khách sạn và vé tàu xe bán rất nhanh. Nên đặt trước ít nhất 4–6 tuần để có giá tốt và chỗ đẹp.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 fade-up fade-up-delay-1">
+        <div class="tip-card">
+          <div class="tip-icon"><i class="bi bi-map"></i></div>
+          <h5 class="tip-title">Tránh cao điểm</h5>
+          <p class="tip-text">Khởi hành ngày 29/4 hoặc 2/5 để tránh tắc đường và đông đúc. Những địa điểm ít nổi tiếng hơn thường đẹp và yên tĩnh hơn nhiều.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 fade-up fade-up-delay-2">
+        <div class="tip-card">
+          <div class="tip-icon"><i class="bi bi-backpack2"></i></div>
+          <h5 class="tip-title">Đồ nhẹ, đủ dùng</h5>
+          <p class="tip-text">Vali gọn nhẹ sẽ giúp bạn linh hoạt hơn nhiều. Đừng quên kem chống nắng, thuốc cơ bản, và sạc dự phòng.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 fade-up fade-up-delay-3">
+        <div class="tip-card">
+          <div class="tip-icon"><i class="bi bi-heart"></i></div>
+          <h5 class="tip-title">Sống chậm lại</h5>
+          <p class="tip-text">Đừng ôm đồm quá nhiều địa điểm. Thà ít nơi mà trải nghiệm trọn vẹn còn hơn chạy như marathon để chụp ảnh rồi quên.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">Hành Trình Nghỉ Lễ</div>
+        <p style="color:rgba(255,255,255,0.45); font-size:0.85rem; line-height:1.8; max-width:320px;">
+          Một góc nhỏ lưu lại những khoảnh khắc đẹp trong các kỳ nghỉ Giỗ Tổ Hùng Vương &amp; 30/4–1/5 của người Việt.
+        </p>
+      </div>
+      <div class="col-lg-2 col-6">
+        <p style="color:rgba(255,255,255,0.65); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1rem;">Khám Phá</p>
+        <ul style="list-style:none; padding:0; font-size:0.85rem;">
+          <li class="mb-2"><a href="#da-di" style="color:rgba(255,255,255,0.45); text-decoration:none;">Nơi Đã Đến</a></li>
+          <li class="mb-2"><a href="#muon-di" style="color:rgba(255,255,255,0.45); text-decoration:none;">Wishlist</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <p style="color:rgba(255,255,255,0.65); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1rem;">Mùa Lễ</p>
+        <ul style="list-style:none; padding:0; font-size:0.85rem;">
+          <li class="mb-2" style="color:rgba(255,255,255,0.45);">Giỗ Tổ Hùng Vương</li>
+          <li class="mb-2" style="color:rgba(255,255,255,0.45);">Ngày 30/4</li>
+          <li class="mb-2" style="color:rgba(255,255,255,0.45);">Quốc Tế Lao Động</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="d-flex flex-wrap justify-content-between align-items-center" style="font-size:0.8rem;">
+      <span style="color:rgba(255,255,255,0.35);">© 2026 Hành Trình Nghỉ Lễ · Made by <span style="color:var(--crimson-mid);">♥</span> Group 7</span>
+      <span style="color:rgba(255,255,255,0.35);">
+        <span class="flag-icon me-1"></span> Tự Hào Việt Nam
+      </span>
+    </div>
+  </div>
+</footer>
+ 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+<script>
+  /* ── Scroll Animation ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+ 
+  /* ── Navbar shrink on scroll ── */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 60
+      ? '0 4px 20px rgba(0,0,0,0.35)'
+      : 'none';
+    nav.style.transition = 'box-shadow 0.3s';
+  });
+ 
+  /* ── Smooth scroll for anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        /* close mobile nav */
+        const bsNav = bootstrap.Collapse.getInstance(document.getElementById('navMenu'));
+        if (bsNav) bsNav.hide();
+      }
+    });
+  });
+</script>
+</body>
+</html>
